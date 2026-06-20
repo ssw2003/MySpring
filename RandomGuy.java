@@ -173,21 +173,532 @@ private int getMax(int a, int b) {
 if (a > b) { return a; } return b;
 }
 private int getValue(int thisState[][]) {
+int corner_thing = 0;
+int sdp = 0;
+int mx_0 = 1;
+int mx_1 = 0;
+int my_0 = 0;
+int my_1 = 1;
+int b_0 = 0;
+int b_1 = 0;
+int s_state[][] = new int[8][8];
+int t_state[][] = new int[8][8];
+if (sdp == 1) { int bt = mx_1; mx_1 = mx_0; mx_0 = bt; bt = my_1; my_1 = my_0; my_0 = bt; }
+while (corner_thing > 0) {
+corner_thing--;
+int bt = mx_0;
+mx_0 = mx_1;
+mx_1 = -1 * bt;
+bt = my_0;
+my_0 = my_1;
+my_1 = -1 * bt;
+} int i = 0;
+int j = 0;
+while (i < 8) { j = 0; while (j < 8) { s_state[i][j] = thisState[i][j]; t_state[i][j] = thisState[i][j];
+if (s_state[i][j] == me) {
+t_state[i][j] = 1;
+}
+if (s_state[i][j] == 3 - me) {
+t_state[i][j] = -1;
+}
+j++; }
+i++;
+} if (mx_0 + my_0 == -1) { b_0 = 7; }
+if (mx_1 + my_1 == -1) { b_1 = 7; }
+int x = 0;
+int y = 0;
+int z = 0;
+while (x < 8) {
+x++;
+y = 0;
+while (y < 8) { y++;
+z = 0;
 int k = 0;
-int i = 8;
-while (i > 0) {
-i--;
-int j = 8;
-while (j > 0) {
-j--;
-if (thisState[i][j] == me) {
-k = k + 2;
-} else if (thisState[i][j] == 0) {
-k = k + 1;
+i = 0;
+while (i < x) { j = 0;
+while (j < y) { k = 0;
+while (j + k < 8 && i - k >= 0) {
+if (s_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] != s_state[b_0][b_1]) { z = 1; }
+k++; }
+j++; }
+i++;
+}
+if (z == 0) {
+i = 0;
+while (i < x) { j = 0;
+while (j < y) {
+k = 0;
+while (j + k < 8 && i - k >= 0) {
+t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] = t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] * 3;
+k++;
+}
+j++; }
+i++; }
+}
+//
 }
 }
+corner_thing = 0;
+sdp = 1;
+int mx_0 = 1;
+int mx_1 = 0;
+int my_0 = 0;
+int my_1 = 1;
+int b_0 = 0;
+int b_1 = 0;
+int s_state[][] = new int[8][8];
+int t_state[][] = new int[8][8];
+if (sdp == 1) { int bt = mx_1; mx_1 = mx_0; mx_0 = bt; bt = my_1; my_1 = my_0; my_0 = bt; }
+while (corner_thing > 0) {
+corner_thing--;
+int bt = mx_0;
+mx_0 = mx_1;
+mx_1 = -1 * bt;
+bt = my_0;
+my_0 = my_1;
+my_1 = -1 * bt;
+} int i = 0;
+int j = 0;
+while (i < 8) { j = 0; while (j < 8) { s_state[i][j] = thisState[i][j]; t_state[i][j] = thisState[i][j];
+if (s_state[i][j] == me) {
+t_state[i][j] = 1;
 }
-return k;
+if (s_state[i][j] == 3 - me) {
+t_state[i][j] = -1;
+}
+j++; }
+i++;
+} if (mx_0 + my_0 == -1) { b_0 = 7; }
+if (mx_1 + my_1 == -1) { b_1 = 7; }
+int x = 0;
+int y = 0;
+int z = 0;
+while (x < 8) {
+x++;
+y = 0;
+while (y < 8) { y++;
+z = 0;
+int k = 0;
+i = 0;
+while (i < x) { j = 0;
+while (j < y) { k = 0;
+while (j + k < 8 && i - k >= 0) {
+if (s_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] != s_state[b_0][b_1]) { z = 1; }
+k++; }
+j++; }
+i++;
+}
+if (z == 0) {
+i = 0;
+while (i < x) { j = 0;
+while (j < y) {
+k = 0;
+while (j + k < 8 && i - k >= 0) {
+t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] = t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] * 3;
+k++;
+}
+j++; }
+i++; }
+}
+//
+}
+}
+corner_thing = 1;
+sdp = 0;
+int mx_0 = 1;
+int mx_1 = 0;
+int my_0 = 0;
+int my_1 = 1;
+int b_0 = 0;
+int b_1 = 0;
+int s_state[][] = new int[8][8];
+int t_state[][] = new int[8][8];
+if (sdp == 1) { int bt = mx_1; mx_1 = mx_0; mx_0 = bt; bt = my_1; my_1 = my_0; my_0 = bt; }
+while (corner_thing > 0) {
+corner_thing--;
+int bt = mx_0;
+mx_0 = mx_1;
+mx_1 = -1 * bt;
+bt = my_0;
+my_0 = my_1;
+my_1 = -1 * bt;
+} int i = 0;
+int j = 0;
+while (i < 8) { j = 0; while (j < 8) { s_state[i][j] = thisState[i][j]; t_state[i][j] = thisState[i][j];
+if (s_state[i][j] == me) {
+t_state[i][j] = 1;
+}
+if (s_state[i][j] == 3 - me) {
+t_state[i][j] = -1;
+}
+j++; }
+i++;
+} if (mx_0 + my_0 == -1) { b_0 = 7; }
+if (mx_1 + my_1 == -1) { b_1 = 7; }
+int x = 0;
+int y = 0;
+int z = 0;
+while (x < 8) {
+x++;
+y = 0;
+while (y < 8) { y++;
+z = 0;
+int k = 0;
+i = 0;
+while (i < x) { j = 0;
+while (j < y) { k = 0;
+while (j + k < 8 && i - k >= 0) {
+if (s_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] != s_state[b_0][b_1]) { z = 1; }
+k++; }
+j++; }
+i++;
+}
+if (z == 0) {
+i = 0;
+while (i < x) { j = 0;
+while (j < y) {
+k = 0;
+while (j + k < 8 && i - k >= 0) {
+t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] = t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] * 3;
+k++;
+}
+j++; }
+i++; }
+}
+//
+}
+}
+corner_thing = 1;
+sdp = 1;
+int mx_0 = 1;
+int mx_1 = 0;
+int my_0 = 0;
+int my_1 = 1;
+int b_0 = 0;
+int b_1 = 0;
+int s_state[][] = new int[8][8];
+int t_state[][] = new int[8][8];
+if (sdp == 1) { int bt = mx_1; mx_1 = mx_0; mx_0 = bt; bt = my_1; my_1 = my_0; my_0 = bt; }
+while (corner_thing > 0) {
+corner_thing--;
+int bt = mx_0;
+mx_0 = mx_1;
+mx_1 = -1 * bt;
+bt = my_0;
+my_0 = my_1;
+my_1 = -1 * bt;
+} int i = 0;
+int j = 0;
+while (i < 8) { j = 0; while (j < 8) { s_state[i][j] = thisState[i][j]; t_state[i][j] = thisState[i][j];
+if (s_state[i][j] == me) {
+t_state[i][j] = 1;
+}
+if (s_state[i][j] == 3 - me) {
+t_state[i][j] = -1;
+}
+j++; }
+i++;
+} if (mx_0 + my_0 == -1) { b_0 = 7; }
+if (mx_1 + my_1 == -1) { b_1 = 7; }
+int x = 0;
+int y = 0;
+int z = 0;
+while (x < 8) {
+x++;
+y = 0;
+while (y < 8) { y++;
+z = 0;
+int k = 0;
+i = 0;
+while (i < x) { j = 0;
+while (j < y) { k = 0;
+while (j + k < 8 && i - k >= 0) {
+if (s_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] != s_state[b_0][b_1]) { z = 1; }
+k++; }
+j++; }
+i++;
+}
+if (z == 0) {
+i = 0;
+while (i < x) { j = 0;
+while (j < y) {
+k = 0;
+while (j + k < 8 && i - k >= 0) {
+t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] = t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] * 3;
+k++;
+}
+j++; }
+i++; }
+}
+//
+}
+}
+corner_thing = 2;
+sdp = 0;
+int mx_0 = 1;
+int mx_1 = 0;
+int my_0 = 0;
+int my_1 = 1;
+int b_0 = 0;
+int b_1 = 0;
+int s_state[][] = new int[8][8];
+int t_state[][] = new int[8][8];
+if (sdp == 1) { int bt = mx_1; mx_1 = mx_0; mx_0 = bt; bt = my_1; my_1 = my_0; my_0 = bt; }
+while (corner_thing > 0) {
+corner_thing--;
+int bt = mx_0;
+mx_0 = mx_1;
+mx_1 = -1 * bt;
+bt = my_0;
+my_0 = my_1;
+my_1 = -1 * bt;
+} int i = 0;
+int j = 0;
+while (i < 8) { j = 0; while (j < 8) { s_state[i][j] = thisState[i][j]; t_state[i][j] = thisState[i][j];
+if (s_state[i][j] == me) {
+t_state[i][j] = 1;
+}
+if (s_state[i][j] == 3 - me) {
+t_state[i][j] = -1;
+}
+j++; }
+i++;
+} if (mx_0 + my_0 == -1) { b_0 = 7; }
+if (mx_1 + my_1 == -1) { b_1 = 7; }
+int x = 0;
+int y = 0;
+int z = 0;
+while (x < 8) {
+x++;
+y = 0;
+while (y < 8) { y++;
+z = 0;
+int k = 0;
+i = 0;
+while (i < x) { j = 0;
+while (j < y) { k = 0;
+while (j + k < 8 && i - k >= 0) {
+if (s_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] != s_state[b_0][b_1]) { z = 1; }
+k++; }
+j++; }
+i++;
+}
+if (z == 0) {
+i = 0;
+while (i < x) { j = 0;
+while (j < y) {
+k = 0;
+while (j + k < 8 && i - k >= 0) {
+t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] = t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] * 3;
+k++;
+}
+j++; }
+i++; }
+}
+//
+}
+}
+corner_thing = 2;
+sdp = 1;
+int mx_0 = 1;
+int mx_1 = 0;
+int my_0 = 0;
+int my_1 = 1;
+int b_0 = 0;
+int b_1 = 0;
+int s_state[][] = new int[8][8];
+int t_state[][] = new int[8][8];
+if (sdp == 1) { int bt = mx_1; mx_1 = mx_0; mx_0 = bt; bt = my_1; my_1 = my_0; my_0 = bt; }
+while (corner_thing > 0) {
+corner_thing--;
+int bt = mx_0;
+mx_0 = mx_1;
+mx_1 = -1 * bt;
+bt = my_0;
+my_0 = my_1;
+my_1 = -1 * bt;
+} int i = 0;
+int j = 0;
+while (i < 8) { j = 0; while (j < 8) { s_state[i][j] = thisState[i][j]; t_state[i][j] = thisState[i][j];
+if (s_state[i][j] == me) {
+t_state[i][j] = 1;
+}
+if (s_state[i][j] == 3 - me) {
+t_state[i][j] = -1;
+}
+j++; }
+i++;
+} if (mx_0 + my_0 == -1) { b_0 = 7; }
+if (mx_1 + my_1 == -1) { b_1 = 7; }
+int x = 0;
+int y = 0;
+int z = 0;
+while (x < 8) {
+x++;
+y = 0;
+while (y < 8) { y++;
+z = 0;
+int k = 0;
+i = 0;
+while (i < x) { j = 0;
+while (j < y) { k = 0;
+while (j + k < 8 && i - k >= 0) {
+if (s_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] != s_state[b_0][b_1]) { z = 1; }
+k++; }
+j++; }
+i++;
+}
+if (z == 0) {
+i = 0;
+while (i < x) { j = 0;
+while (j < y) {
+k = 0;
+while (j + k < 8 && i - k >= 0) {
+t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] = t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] * 3;
+k++;
+}
+j++; }
+i++; }
+}
+//
+}
+}
+corner_thing = 3;
+sdp = 0;
+int mx_0 = 1;
+int mx_1 = 0;
+int my_0 = 0;
+int my_1 = 1;
+int b_0 = 0;
+int b_1 = 0;
+int s_state[][] = new int[8][8];
+int t_state[][] = new int[8][8];
+if (sdp == 1) { int bt = mx_1; mx_1 = mx_0; mx_0 = bt; bt = my_1; my_1 = my_0; my_0 = bt; }
+while (corner_thing > 0) {
+corner_thing--;
+int bt = mx_0;
+mx_0 = mx_1;
+mx_1 = -1 * bt;
+bt = my_0;
+my_0 = my_1;
+my_1 = -1 * bt;
+} int i = 0;
+int j = 0;
+while (i < 8) { j = 0; while (j < 8) { s_state[i][j] = thisState[i][j]; t_state[i][j] = thisState[i][j];
+if (s_state[i][j] == me) {
+t_state[i][j] = 1;
+}
+if (s_state[i][j] == 3 - me) {
+t_state[i][j] = -1;
+}
+j++; }
+i++;
+} if (mx_0 + my_0 == -1) { b_0 = 7; }
+if (mx_1 + my_1 == -1) { b_1 = 7; }
+int x = 0;
+int y = 0;
+int z = 0;
+while (x < 8) {
+x++;
+y = 0;
+while (y < 8) { y++;
+z = 0;
+int k = 0;
+i = 0;
+while (i < x) { j = 0;
+while (j < y) { k = 0;
+while (j + k < 8 && i - k >= 0) {
+if (s_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] != s_state[b_0][b_1]) { z = 1; }
+k++; }
+j++; }
+i++;
+}
+if (z == 0) {
+i = 0;
+while (i < x) { j = 0;
+while (j < y) {
+k = 0;
+while (j + k < 8 && i - k >= 0) {
+t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] = t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] * 3;
+k++;
+}
+j++; }
+i++; }
+}
+//
+}
+}
+corner_thing = 3;
+sdp = 1;
+int mx_0 = 1;
+int mx_1 = 0;
+int my_0 = 0;
+int my_1 = 1;
+int b_0 = 0;
+int b_1 = 0;
+int s_state[][] = new int[8][8];
+int t_state[][] = new int[8][8];
+if (sdp == 1) { int bt = mx_1; mx_1 = mx_0; mx_0 = bt; bt = my_1; my_1 = my_0; my_0 = bt; }
+while (corner_thing > 0) {
+corner_thing--;
+int bt = mx_0;
+mx_0 = mx_1;
+mx_1 = -1 * bt;
+bt = my_0;
+my_0 = my_1;
+my_1 = -1 * bt;
+} int i = 0;
+int j = 0;
+while (i < 8) { j = 0; while (j < 8) { s_state[i][j] = thisState[i][j]; t_state[i][j] = thisState[i][j];
+if (s_state[i][j] == me) {
+t_state[i][j] = 1;
+}
+if (s_state[i][j] == 3 - me) {
+t_state[i][j] = -1;
+}
+j++; }
+i++;
+} if (mx_0 + my_0 == -1) { b_0 = 7; }
+if (mx_1 + my_1 == -1) { b_1 = 7; }
+int x = 0;
+int y = 0;
+int z = 0;
+while (x < 8) {
+x++;
+y = 0;
+while (y < 8) { y++;
+z = 0;
+int k = 0;
+i = 0;
+while (i < x) { j = 0;
+while (j < y) { k = 0;
+while (j + k < 8 && i - k >= 0) {
+if (s_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] != s_state[b_0][b_1]) { z = 1; }
+k++; }
+j++; }
+i++;
+}
+if (z == 0) {
+i = 0;
+while (i < x) { j = 0;
+while (j < y) {
+k = 0;
+while (j + k < 8 && i - k >= 0) {
+t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] = t_state[mx_0 * (j + k) + my_0 * (i - k) + b_0][mx_1 * (j + k) + my_1 * (i - k) + b_1] * 3;
+k++;
+}
+j++; }
+i++; }
+}
+//
+}
+}
+int gi = 64;
+int gj = 0;
+while (gi > 0) {
+gi--;
+gj = gj + t_state[gi % 8][gi / 8]; }
+return gj;
 }
     private boolean myCheckDirection(int thatState[][], int row, int col, int incx, int incy, int mePerson) {
         int sequence[] = new int[7];
